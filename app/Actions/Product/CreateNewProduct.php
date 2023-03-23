@@ -18,18 +18,14 @@ class CreateNewProduct
             'title' => ['required', 'string', 'max:255', 'unique:products,title'],
             'description' => ['nullable', 'string'],
             'price' => ['numeric', 'required', 'min:1'],
-            'live_at' => ['nullable', 'date_format:Y-m-d H:i:s,Y-m-ds'],
-            'categories' => ['required'],
         ])->validate();
 
-        $product = Product::create([
+        return Product::create([
             'title' => $input['title'],
             'slug' => Str::slug($input['title'], '-'),
             'description' => $input['description'],
             'price' => $input['price'],
-            'live_at' => $input['live_at'],
         ]);
 
-        $product->categories()->sync( $input['categories'] );
     }
 }

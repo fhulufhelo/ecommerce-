@@ -9,38 +9,23 @@ use Livewire\Component;
 
 class EditProduct extends Component
 {
-    public bool $openModal = false;
+    public Product $product;
 
-    protected $listeners = ['editProduct'];
-    public $productId;
-
-    public array $state = [];
-
-    public function editProduct(int $productId)
+    public function mount()
     {
-        $product = Product::with('categories')->find($productId);
-
-        $this->productId = $productId;
-
         $this->state = [
-            'title' => $product->title,
-            'description' => $product->description,
-            'price' => $product->price,
-            'live_at' => $product->live_at,
-            'categories' => $product->categories->pluck('id')->toArray(),
+            'title' => $this->product->title,
+            'description' => $this->product->description,
+            'price' => $this->product->price,
+            'live_at' => $this->product->live_at,
         ];
-
-        $this->openModal = true;
     }
 
     public function update(UpdateProduct $creator)
     {
-        $product = Product::find($this->productId);
-        $creator->update($this->state, $product);
+        $creator->update($this->state, $this->product);
 
         $this->emit('refresh');
-
-        $this->reset(['openModal','state']);
     }
 
     public function getCategoriesProperty(): \Illuminate\Database\Eloquent\Collection

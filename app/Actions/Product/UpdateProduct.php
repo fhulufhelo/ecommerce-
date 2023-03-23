@@ -20,7 +20,7 @@ class UpdateProduct
             'description' => ['nullable', 'string'],
             'price' => ['numeric', 'required', 'min:1'],
             'live_at' => ['nullable', 'date_format:Y-m-d H:i:s,Y-m-ds'],
-            'categories' => ['required','array'],
+
         ])->validate();
 
         $product->update([
@@ -30,7 +30,5 @@ class UpdateProduct
             'price' => $input['price'],
             'live_at' => $input['live_at'],
         ]);
-
-        $product->categories()->sync( $input['categories'] );
     }
 }

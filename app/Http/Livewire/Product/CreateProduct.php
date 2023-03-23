@@ -15,8 +15,6 @@ class CreateProduct extends Component
         'title' => null,
         'description' => null,
         'price' => null,
-        'live_at' => null,
-        'categories' => [],
     ];
 
     /**
@@ -24,11 +22,8 @@ class CreateProduct extends Component
      */
     public function create(CreateNewProduct $creator)
     {
-        $creator->create($this->state);
-
-        $this->emit('refresh');
-
-        $this->reset(['openModal']);
+       $product =  $creator->create($this->state);
+        return redirect()->route('products.edit',$product);
     }
 
     public function getCategoriesProperty(): \Illuminate\Database\Eloquent\Collection

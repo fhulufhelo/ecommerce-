@@ -14,7 +14,7 @@ class Product extends Model
         'slug',
         'description',
         'price',
-        'live_at'
+        'is_online'
     ];
 
     public function categories()
