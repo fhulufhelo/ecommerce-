@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->integer('price')->unsigned();
-            $table->datetime('live_at')->nullable();
+            $table->enum('is_online', ['published', 'unpublished'])->default('unpublished');
             $table->timestamps();
         });
     }

@@ -44,10 +44,7 @@
                                 {{$product->created_at}}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <button wire:click="edit({{$product->id}})" class="text-indigo-600 hover:text-indigo-900">Edit</button>
-                                <button x-data
-                                        @click="confirm('Are you sure?') ? $wire.delete('{{$product->id}}') : ''"
-                                        class="text-red-600 hover:text-red-900">Delete</button>
+                                <a href="{{route('products.edit',[$product])}}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                             </td>
                         </tr>
                     @empty
