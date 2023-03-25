@@ -21,4 +21,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class)->withTimestamps();
     }
+
+    public function variations()
+    {
+        return $this->hasMany(Variation::class);
+    }
 }

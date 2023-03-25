@@ -19,4 +19,13 @@ class AdminProductController extends Controller
 
         return view('admin.product.edit',['product' => $product]);
     }
+
+    public function variations(Product $product)
+    {
+        $product->load('variations');
+
+        return view('admin.product.variations',['product' => $product]);
+    }
+
+
 }
