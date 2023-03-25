@@ -29,5 +29,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/categories', [AdminCategoryController::class, 'create'])->name('categories.create');
         Route::get('/products', [AdminProductController::class, 'create'])->name('products.create');
         Route::get('/products/{product}/edit', [AdminProductController::class, 'edit'])->name('products.edit');
+        Route::get('/products/{product}/variations', [AdminProductController::class, 'variations'])->name('products.variations');
     });
 });
